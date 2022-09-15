@@ -4,6 +4,7 @@ function App() {
     <>
       <body>
         <main className="container">
+          <div className="input-container">
           <label htmlFor="bill">Bill</label>
           <span className="icon" id="dolla">
             <input
@@ -16,9 +17,10 @@ function App() {
 
           <label htmlFor="bill">Select Tip %</label>
           <div className="tip-container">
-            <button type="radio" className="btn">
+           <button type="radio" className="btn">
               5%
             </button>
+            
             <button type="radio" className="btn">
               10%
             </button>
@@ -39,6 +41,9 @@ function App() {
           <span className="icon" id="person">
           <input type="number" className="input num-of-ppl" placeholder="0" />              
             </span>
+          </div>
+          
+         
           <div className="result-container">
             <div className="result-item-container">
               <span class="result-item-lbl">Tip Amount</span>
