@@ -31,9 +31,7 @@ function App() {
             <button type="radio" className="btn">
               25%
             </button>
-            <button type="radio" className="btn">
-              50%
-            </button>
+            
             
             <input type="number" className="custom btn" placeholder="Custom" />
           </div>
@@ -42,15 +40,15 @@ function App() {
           <input type="number" className="input num-of-ppl" placeholder="0" />              
             </span>
           <div className="result-container">
-            <div className="tip-amt-per-person">
-              <span>Tip Amount / person </span>
-              <span>4.27</span>
+            <div className="result-item-container">
+              <span class="result-item-lbl">Tip Amount</span>
+              <span class="result-item">$4.27</span>
             </div>
-            <div className="total">
-              <span>Total / person </span>
-              <span>4.27</span>
+            <div className="result-item-container">
+              <span class="result-item-lbl">Total</span>
+              <span class="result-item">$4.27</span>
             </div>
-            <button className="btn reset">Reset</button>
+            <button className="btn reset">RESET</button>
           </div>
         </main>
       </body>

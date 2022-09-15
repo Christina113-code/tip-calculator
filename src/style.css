@@ -8,22 +8,29 @@
     --clr-ntrl-lt:hsl(185, 41%, 84%);
     --clr-ntrl-ltr: hsl(189, 41%, 97%);
     --clr-ntrl-min:white;
-    --fs-b: .7rem;
+    --fs-sm: .7rem;
+    --fs-m: 1rem;
+    --fs-lg:1.6rem;
+    --br-btn: .3rem;
     --ff: 'Space Mono', sans-serif;
     --mbl-w: 375px;
+    --fw: 900;
 }
 
 *, ::before, ::after{
     box-sizing: border-box;
+    font-family:var(--ff);
+    font-weight:var(--fw);
+    letter-spacing: .07rem;
     
 }
 /* Layout */
 body{
     min-height:100vh;
     min-width:100vw;
-    font-family:var(--ff);
-    font-size:var(--fs-b);
-    color:var(--clr-ntrl-dkr);
+    
+    font-size:var(--fs-sm);
+    color:var(--clr-ntrl-dk);
     background-color: var(--clr-ntrl-lt);
     margin:0;
     padding: 0;
@@ -44,22 +51,58 @@ body{
     gap:1rem;
 }
 .tip-container{
-    display: flex;
-    flex-direction: row;
-    width:50%;
-    flex-wrap: wrap;
-    gap:.4rem;
+   width:100%;
+   display:grid;
+   grid-template-columns: 1fr 1fr;
+   gap:1rem;
+}
+.result-container{
+    background-color: var(--clr-ntrl-dkr);
+    padding-top:1rem;
+    border-radius:var(--br-btn);
+    padding:.5rem;
+    flex-grow:1;
+    display:flex;
+    flex-direction: column;
+}
+.result-item-container{
+    display:flex;
+    align-items: center;
+}
+.result-item{
+    margin-left:auto;
+    padding:1rem;
+    color:var(--clr-primary);
+    font-size:var(--fs-lg)
+}
+.result-item-lbl{
+    color:var(--clr-ntrl-ltr);
+    padding:.7rem;
+}
+.result-item-lbl::after{
+    content:"/ person";
+    color:var(--clr-ntrl-dk);
+    display:block;
+    padding:.2rem;
 }
 
 /* input & icon styles */
 input{
     border:none;
-    border-radius:.7rem;
+    border-radius:var(--br-btn);
     background-color: var(--clr-ntrl-ltr);
-    height:2rem;
+    height:2.8rem;
+    width:100%;
     padding:1rem;
     text-align: end;
     color:var(--clr-ntrl-dkr);
+}
+
+.custom::placeholder{
+    color:var(--clr-ntrl-dk);
+}
+.custom{
+    background-color:var(--clr-ntrl-ltr);
 }
 .icon{
     display:inline-block;
@@ -87,4 +130,29 @@ input{
   position: absolute;
   top: 0;
   width: 2em;
+}
+
+/* Buttons */
+.btn{
+    height:2.5rem;
+    background-color:var(--clr-ntrl-dkr);
+    color:var(--clr-ntrl-min);
+    border:none;
+    border-radius:var(--br-btn);
+    font-size:var(--fs-m);
+    
+    transition:all 0.2s linear;
+
+}
+.btn:hover:not(.custom){
+    background-color: var(--clr-primary);
+    transition:all 0.2s linear;
+    cursor:pointer;
+}
+.btn:visited{
+    background-color: var(--clr-primary);
+}
+.reset{
+    background-color:var(--clr-primary);
+    color:var(--clr-ntrl-dkr)
 }
