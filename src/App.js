@@ -48,6 +48,7 @@ function App() {
                 name="bill"
                 onChange={handleBillChange}
                 min="0"
+                step=".01"
                 max="999999"
                 required
               />
@@ -93,7 +94,10 @@ function App() {
                 placeholder="Custom"
                 onChange={handlePercentChange}
                 min="0"
-                max="999"
+                step=".01"
+                max="999999"
+
+               
               />
             </div>
             <label htmlFor="num-of-ppl">Number of People</label>
@@ -106,6 +110,7 @@ function App() {
                 min="0"
                 required
                 max="999999"
+                step="1"
               />
             </span>
           </div>
