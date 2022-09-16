@@ -2,7 +2,7 @@
 
 :root{
     --clr-primary: hsl(172, 67%, 45%);
-    --clr-primary-lt: hsla(172, 96%, 66%, 0.79);
+    --clr-primary-lt: hsla(172, 100%, 77%, 0.79);
     --clr-ntrl-dkr:hsl(183, 100%, 15%);
     --clr-ntrl-dk:hsl(186, 14%, 43%);
     --clr-ntrl: hsl(184, 14%, 56%);
@@ -101,11 +101,13 @@ input{
     width:100%;
     padding:1rem;
     text-align: end;
-    color:var(--clr-ntrl-dkr);
+    color:var(--clr-ntrl-dkr) !important;
 }
-
+input:invalid{
+    outline:3px solid red;
+}
 input:focus{
-    outline:1px solid var(--clr-primary-lt);
+    outline:3px solid var(--clr-primary-lt);
     transition:all 0.2s linear;
 }
 .custom::placeholder{
@@ -144,6 +146,20 @@ input:focus{
 }
 
 /* Buttons */
+
+
+.btn:hover:not(.custom){
+    background-color: var(--clr-primary);
+    transition:all 0.2s linear;
+    cursor:pointer;
+}
+.btn:visited{
+    background-color: var(--clr-primary);
+}
+.selected{
+    background-color:var(--clr-primary) !important;
+    color:var(--clr-ntrl-dkr) !important;
+}
 .btn:not(.custom){
     height:2.5rem;
     background-color:var(--clr-ntrl-dkr);
@@ -154,21 +170,14 @@ input:focus{
     transition:all 0.2s linear;
 
 }
-.btn-a:active{
-    background-color: blue;
-}
-.btn:hover:not(.custom){
-    background-color: var(--clr-primary);
-    transition:all 0.2s linear;
-    cursor:pointer;
-}
-.btn:visited{
-    background-color: var(--clr-primary);
-}
-.reset{
+.reset, .inactive{
     background-color:var(--clr-primary) !important;
-    color:var(--clr-ntrl-dkr);
+    color:var(--clr-ntrl-dkr) !important;
     margin:1rem;
+}
+.inactive{
+    opacity:.2;
+    cursor:default !important;
 }
 .reset:hover{
     cursor:pointer;
@@ -178,8 +187,8 @@ input:focus{
 /* Media queries */
 @media screen and (min-width: 768px) {
     .container{
-        width:min(90%,820px);
-        font-size:larger;
+        width:min(90%,950px);
+        font-size:.8rem;
         flex-direction: row;
         position:absolute;
         top:50%;
@@ -191,8 +200,15 @@ input:focus{
        width: 50%;
        padding-right:2rem;
     }
-    .reset{
+    input{
+        font-size:1.2rem;
+    }
+    .reset, .inactive{
         margin-top:auto;
+    }
+    .result-item{
+        font-size:2.5rem;
+        
     }
 
     .tip-container{

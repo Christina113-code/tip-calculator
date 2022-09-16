@@ -8,11 +8,11 @@ function App() {
   let total;
   let tip;
   people > 0 && bill > 0
-    ? ((total = (bill + bill * tipPercent) / people)).toFixed(2)
-    : (total = 0.00.toFixed(2));
-    tipPercent>0 && bill > 0 &&people > 0
-    ? tip=((bill*tipPercent) / people).toFixed(2)
-    : (tip = 0.00.toFixed(2));
+    ? (total = Math.round(((bill + bill * tipPercent) / people) * 100) / 100)
+    : (total = (0.0).toFixed(2));
+  tipPercent > 0 && bill > 0 && people > 0
+    ? (tip = (Math.round((bill * tipPercent) / people) * 100) / 100)
+    : (tip = (0.0).toFixed(2));
   // input events
   const handleBillChange = (e) => {
     let val = parseFloat(e.target.value);
@@ -21,10 +21,23 @@ function App() {
   const handlePeopleChange = (e) => {
     setPeople(parseFloat(e.target.value));
   };
+  const handlePercentChange = (e) => {
+    setTipPercent(parseFloat(e.target.value) * 0.01);
+  };
+  const resetForm = (e) => {
+    e.preventDefault();
+    setBill(0);
+    setPeople(0);
+    setTipPercent();
+    for (let i = 0; i < 3; i++) {
+      document.getElementsByTagName("input")[i].value = "";
+    }
+  };
+  
   return (
     <>
       <body>
-        <main className="container">
+        <form className="container">
           <div className="input-container">
             <label htmlFor="bill">Bill</label>
             <span className="icon" id="dolla">
@@ -34,22 +47,53 @@ function App() {
                 placeholder="00.00"
                 name="bill"
                 onChange={handleBillChange}
+                min="0"
+                max="999999"
+                required
               />
             </span>
 
             <label htmlFor="bill">Select Tip %</label>
             <div className="tip-container">
-              <button className="btn" onClick={()=>setTipPercent(.05)}>5%</button>
+              <button
+                className={`btn ${tipPercent === 0.05 ? "selected" : ""}`}
+                onClick={() => setTipPercent(0.05)}
+              >
+                5%
+              </button>
 
-              <button className="btn" onClick={()=>setTipPercent(.1)}>10%</button>
-              <button className="btn" onClick={()=>setTipPercent(.15)}>15%</button>
-              <button className="btn" onClick={()=>setTipPercent(.2)}>20%</button>
-              <button className="btn" onClick={()=>setTipPercent(.25)}>25%</button>
+              <button
+                className={`btn ${tipPercent === 0.1 ? "selected" : ""}`}
+                onClick={() => setTipPercent(0.1)}
+              >
+                10%
+              </button>
+              <button
+                className={`btn ${tipPercent === 0.15 ? "selected" : ""}`}
+                onClick={() => setTipPercent(0.15)}
+              >
+                15%
+              </button>
+              <button
+                className={`btn ${tipPercent === 0.2 ? "selected" : ""}`}
+                onClick={() => setTipPercent(0.2)}
+              >
+                20%
+              </button>
+              <button
+                className={`btn ${tipPercent === 0.25 ? "selected" : ""}`}
+                onClick={() => setTipPercent(0.25)}
+              >
+                25%
+              </button>
 
               <input
                 type="number"
                 className="custom btn"
                 placeholder="Custom"
+                onChange={handlePercentChange}
+                min="0"
+                max="999"
               />
             </div>
             <label htmlFor="num-of-ppl">Number of People</label>
@@ -59,6 +103,9 @@ function App() {
                 className="input num-of-ppl"
                 placeholder="0"
                 onChange={handlePeopleChange}
+                min="0"
+                required
+                max="999999"
               />
             </span>
           </div>
@@ -66,15 +113,22 @@ function App() {
           <div className="result-container">
             <div className="result-item-container">
               <span class="result-item-lbl">Tip Amount</span>
-              <span class="result-item">${tip}</span>
+              <span class="result-item">${tip ? tip : "0.00"}</span>
             </div>
             <div className="result-item-container">
               <span class="result-item-lbl">Total</span>
-              <span class="result-item">${total}</span>
+              <span class="result-item">${total ? total : "0.00"}</span>
             </div>
-            <button className="btn reset">RESET</button>
+            <button
+              className={`btn  ${
+                bill && tipPercent && people ? "reset" : "inactive"
+              }`}
+              onClick={resetForm}
+            >
+              RESET
+            </button>
           </div>
-        </main>
+        </form>
       </body>
     </>
   );
